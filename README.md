@@ -1,4 +1,4 @@
-# Mlr的Latex模板
+# ECNU-notes模板
 
 一定程度参考如下模板:
 
