@@ -1,0 +1,100 @@
+\documentclass[oneside,cover]{ECNU-notes}
+% 改成uncover可变回普通封面
+\title{ECNU-notes模板}
+\author{YD1}
+\date{\today}
+\SetCoveringTitle{ECNU-notes模板}
+\SetCoveringAuthor{YD1}
+
+\makeatletter
+\newcommand{\CounterValueOrNA}[1]{\@ifundefined{c@#1}{undefined}{\arabic{#1}}}
+\newcommand{\ShowCounter}[1]{\noindent\texttt{\detokenize{#1}} = \CounterValueOrNA{#1}\par}
+\makeatother
+
+\begin{document}
+\maketitle
+\pagestyle{fancy}
+{\let\scshape\relax\tableofcontents}
+
+\chapter{快捷命令、环境与计数器}
+\pagenumbering{arabic}
+\section{快捷命令演示}
+所有颜色取自\url{https://www.ecnu.edu.cn/wzcd/xxgk/xxbs.htm}
+\dfn{定义\string\dfn 对应说明}{这个是由 \string\dfn 命令生成的 Definition 框，环境是 \texttt{Definition}，使用计数器 \texttt{tcb@cnt@Definition}, 随Section更新，对应的label是 \texttt{dfn:1.1.1}. }
+\thm{定理\string\thm 对应说明}{这个是由 \string\thm 命令生成的 Theorem 框，环境是 \texttt{Theorem}，使用计数器 \texttt{tcb@cnt@Theorem}，随Section更新，对应的label是 \texttt{th:1.1.1}}
+\cor{推论\string\cor 对应说明}{这个是由 \string\cor 命令生成的 Corollary 框，环境是 \texttt{Corollary}，使用计数器 \texttt{tcb@cnt@Corollary}，随Section更新，对应的label是 \texttt{cor:1.1.1}. }
+\mlemma{引理\string\mlemma 对应说明}{这个是由 \string\mlemma 命令生成的 Lemma 框，环境是 \texttt{Lemma}，使用计数器 \texttt{tcb@cnt@Lemma}，随Section更新，对应的label是 \texttt{lem:1.1.1}. }
+\mprop{命题\string\mprop 对应说明}{这个是由 \string\mprop 命令生成的 Proposition 框，环境是 \texttt{Prop}，使用计数器 \texttt{tcb@cnt@Prop}，随Section更新，对应的label是 \texttt{prop:1.1.1}. }
+\cl{声明\string\cl 对应说明}{这个是由 \string\cl 命令生成的 Claim 框，环境是 \texttt{Claim}，使用计数器 \texttt{tcb@cnt@Claim}，随Section更新，对应的label是 \texttt{cl:1.1.1}. }
+\con{结论\string\con 对应说明}{这个是由 \string\con 命令生成的 Conclusion 框，环境是 \texttt{Conclusion}，使用计数器 \texttt{tcb@cnt@Conclusion}，随Section更新，对应的label是 \texttt{con:1.1.1}. }
+\eg{例\string\eg 对应说明}{这个是由 \string\eg 命令生成的 Example 框，环境是 \texttt{Example}，使用计数器 \texttt{tcb@cnt@Example}，随Chapter更新，对应的label是 \texttt{eg:1.1}. }
+\ex{练习\string\ex 对应说明}{这个是由 \string\ex 命令生成的 Exercise 框，环境是 \texttt{Exercise}，对应计数器 \texttt{tcb@cnt@Exercise}，随Chapter更新，对应的label是 \texttt{ex:1.1}. }
+\nt{笔记\string\nt 对应说明}{这个是由 \string\nt 命令生成的 Note 框，环境是 \texttt{Note}，对应计数器 \texttt{tcb@cnt@Note}，随Chapter更新，对应的label是 \texttt{nt:1.1}. }
+
+\nt{}{正文里使用 \texttt{\string\ref\{eg:1.1\}} 得到：\ref{eg:1.1}；使用\texttt{\string\ref\{th:1.1.1\}}得到：\ref{th:1.1.1}.}
+\nt{}{这些环境的第一个参数是可选的标题.}
+
+\subsection{实时计数器总览}
+\ShowCounter{tcb@cnt@Example}
+\eg{}{此处Example计数器+1}
+\ShowCounter{tcb@cnt@Example}
+\ShowCounter{section}
+\ShowCounter{subsection}
+\ShowCounter{tcb@cnt@Theorem}
+\ShowCounter{tcb@cnt@Corollary}
+\ShowCounter{tcb@cnt@Lemma}
+\ShowCounter{tcb@cnt@Prop}
+\ShowCounter{tcb@cnt@Conclusion}
+\ShowCounter{tcb@cnt@Definition}
+\ShowCounter{tcb@cnt@Note}
+\ShowCounter{tcb@cnt@Claim}
+\ShowCounter{tcb@cnt@Exercise}
+\section{其他快捷命令说明}
+\pf{\string\pf 的实际效果}{\string\pf 会进入 \texttt{myproof}（本质是 proof 风格），不使用 tcb 计数器. }
+\sol 这是 \string\sol 产生的前缀文本，不对应独立计数器. 
+
+\section{其他功能}
+\subsection{语义配色命令}
+\textpri{主强调}，\textinfo{信息色}，\textsuccess{成功色}，\textwarning{警示色}，\textmuted{弱化色}. 
+
+\subsection{圈号标记命令}
+步骤\circled{1}、步骤\circled{2} 可用于流程标记. 
+
+\subsection{文本锚点与引用}
+先定义术语：\setword{紧算子}{term:compact-operator}. 
+随后可在正文中引用该术语：\ref{term:compact-operator}. 
+也可以手动加入名词索引：\idxterm{紧算子}、\idxterm{有界线性算子}. 
+
+\section{参考文献与名词索引示例}
+\dfn[Banach space]{巴拿赫空间}{赋范线性空间若在其范数诱导的度量下完备，则称为巴拿赫空间. }
+上面的定义标题会自动加入名词索引. 
+
+参考文献示例：经典教材可参见 \cite{rudin1991fa}，算子理论入门可参见 \cite{kreyszig1989intro}. 
+再手动加入一个术语索引：\idxterm{谱半径}. 
+
+\section{数学快捷命令（中文示例）}
+常用数域：$\RR, \CC, \NN, \ZZ, \QQ, \RR[n], \CC[2]$. 
+
+导数快捷命令：
+\[
+\dd x,\quad \dd[2]x,\quad \dv{f}{x},\quad \dv[2]{f}{x},\quad \pdv{u}{x} \text{or} \pp{u}{x},\quad \pdv[2]{u}{x},\quad 
+\]
+
+定界符快捷命令：
+\[
+\abs{-1},\quad \norm{v},\quad \ceil{3.1},\quad \floor{3.9},\quad \round{2.5},\quad \innerp{a}{b}.
+\]
+
+字母族快捷命令：
+\[
+\bbR,\ \mcA,\ \bmx,\ \sF,\ \mfg
+\]
+
+其他符号快捷命令：
+\[
+A \liff B,\quad A \lthen B,\quad f\taking{n\to\infty}L,
+\quad X\surjto Y,\quad U\injto V.
+\]
+\printtermindex
+\printclassnotesbibliography{template-ecnu-classnotes-showcase}
+\end{document}
